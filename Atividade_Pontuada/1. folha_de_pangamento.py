@@ -18,23 +18,24 @@ def calcular_inss(salario):
     elif 3856.95 <= salario <= 7507.49:
         desconto_inss = salario * 0.14
     else:
-        desconto_inss = 0  
+        desconto_inss = 7507.49 * 0.14
     return desconto_inss
 
 def calcular_irrf(salario, dependentes):
     deducao_dependente = 189.59
-    salario_base = salario - (dependentes * deducao_dependente)
+    inss = calcular_inss(salario)
+    salario_base = salario - inss - (dependentes * deducao_dependente)
 
     if salario_base <= 2112.00:
         desconto_irrf = 0
-    elif 2112.01 <= salario_base <= 2826.65:
-        desconto_irrf = (salario_base * 0.075) - 158.40
-    elif 2826.66 <= salario_base <= 3751.05:
-        desconto_irrf = (salario_base * 0.15) - 370.40
-    elif 3751.06 <= salario_base <= 4664.68:
-        desconto_irrf = (salario_base * 0.225) - 651.73
-    elif salario_base > 4664.68:
-        desconto_irrf = (salario_base * 0.275) - 884.96
+    if 2112.01 <= salario_base <= 2826.65:
+        desconto_irrf = (salario_base * 0.075) 
+    if 2826.66 <= salario_base <= 3751.05:
+        desconto_irrf = (salario_base * 0.15)
+    if 3751.06 <= salario_base <= 4664.68:
+        desconto_irrf = (salario_base * 0.225) 
+    if salario_base > 4664.68:
+        desconto_irrf = (salario_base * 0.275)
     return desconto_irrf
 
 def calcular_vale_transporte(salario, escolher_vt):
